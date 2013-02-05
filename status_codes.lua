@@ -10,7 +10,7 @@ local set_status = function(phone_id, status)
   storage[status_id] = RECEIVED_INITIAL_TEXT
 end
 
-local get_status = function(phone_id) 
+global get_status = function(phone_id) 
   local status_id = phone_id..'_status' 
   return storage[status_id]
 end
