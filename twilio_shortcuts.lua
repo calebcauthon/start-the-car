@@ -36,6 +36,12 @@ send_unknown_action_message = function(phone_id, car_action)
   send_sms(twilio_sms_number, to, body)
 end
 
+send_bad_phone_number_message = function(phone_id, msg) 
+  local to = get_phone_number(phone_id)
+  local body = 'Sorry, "'..msg..'" is not a valid phone number. Try again. The phone number must be 10 digits'
+  send_sms(twilio_sms_number, to, body)
+end
+
 send_pin_request = function(phone_id)
   local to = get_phone_number(phone_id)
   local body = 'What\'s your bluelink PIN?'
