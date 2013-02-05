@@ -30,6 +30,12 @@ send_sms = function(from, to, body)
   twilio.sms(ACCOUNTSID, AUTHTOKEN, from, to, body)
 end
 
+send_unknown_action_message = function(phone_id, car_action) 
+  local to = get_phone_number(phone_id)
+  local body = 'Sorry, "'..car_action..'" is not valid. try "start engine"'
+  send_sms(twilio_sms_number, to, body)
+end
+
 send_pin_request = function(phone_id)
   local to = get_phone_number(phone_id)
   local body = 'What\'s your bluelink PIN?'
