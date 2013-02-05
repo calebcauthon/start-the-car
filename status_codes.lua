@@ -20,9 +20,19 @@ set_bluelink_pin = function(phone_id, pin)
   storage[bluelink_pin_id] = pin
 end
 
+get_bluelink_pin = function(phone_id) 
+  local bluelink_pin_id = phone_id..'_pin'
+  return storage[bluelink_pin_id]
+end
+
 set_bluelink_phone_number = function(phone_id, phone_number) 
   local bluelink_phone_number_id = phone_id..'_bluelink_number'
   storage[bluelink_phone_number_id] = phone_number
+end
+
+get_bluelink_phone_number = function(phone_id) 
+  local bluelink_phone_number_id = phone_id..'_bluelink_number'
+  return storage[bluelink_phone_number_id]
 end
 
 get_phone_number = function(phone_id)

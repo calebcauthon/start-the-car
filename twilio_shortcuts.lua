@@ -1,6 +1,13 @@
 local ACCOUNTSID = 'ACcd4fd39d524a70f6db244dfb51adc318'
 local AUTHTOKEN = '26946965af09d519cc066753b5f89164'
 local twilio_sms_number = '+14844986324'
+local twilio_voice_number = '+14844986324'
+BLUELINK_CALL_CENTER = '8552258354'
+
+send_phonecall = function(to, callback_url, numbers_to_press_after_answer) 
+  local from = twilio_voice_number
+  twilio.call(ACCOUNTSID, AUTHTOKEN, from, to, callback_url, numbers_to_press_after_answer)
+end
 
 send_sms = function(from, to, body) 
   twilio.sms(ACCOUNTSID, AUTHTOKEN, from, to, body)
