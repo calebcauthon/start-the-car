@@ -2,7 +2,15 @@ local ACCOUNTSID = 'ACcd4fd39d524a70f6db244dfb51adc318'
 local AUTHTOKEN = '26946965af09d519cc066753b5f89164'
 local twilio_sms_number = '+14844986324'
 local twilio_voice_number = '+14844986324'
-BLUELINK_CALL_CENTER = '8552258354'
+local BLUELINK_CALL_CENTER = '8552258354'
+
+send_call_to_bluelink_to_start_engine = function(phone_id)
+  local confirmed_phone_number = get_bluelink_phone_number(phone_id)
+	local pin = get_bluelink_pin(phone_id)
+	local callback_url = 'https://bluelink.webscript.io/start-engine-twilio-script'
+	local digits = 'ww1ww1wwwwwwwwwwwwwwwwwwwwwwww1ww'..confirmed_phone_number..'www'..pin..'wwwwwwwwwwwwww'
+	send_phonecall(BLUELINK_CALL_CENTER, callback_url, digits)
+end
 
 send_phonecall = function(to, callback_url, numbers_to_press_after_answer) 
   local from = twilio_voice_number
