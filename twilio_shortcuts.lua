@@ -2,7 +2,7 @@ local ACCOUNTSID = 'ACcd4fd39d524a70f6db244dfb51adc318'
 local AUTHTOKEN = '26946965af09d519cc066753b5f89164'
 local twilio_sms_number = '+14844986324'
 local twilio_voice_number = '+14844986324'
-local BLUELINK_CALL_CENTER = '9133758105'
+local BLUELINK_CALL_CENTER = '8552258354'
 
 twilio.call = function (accountsid, authtoken, from, to, url, sendDigits)
 	return http.request {
