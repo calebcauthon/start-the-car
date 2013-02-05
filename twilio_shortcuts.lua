@@ -14,12 +14,11 @@ twilio.call = function (accountsid, authtoken, from, to, url, sendDigits)
 end
 
 send_get_started_message = function(phone_id) 
-  local to = get_phone_number(phone_id)
   local body = 'Welcome to 484HYUNDAI. We are not officially affiliated with Hyundai. For more info, visit 484HYUNDAI.com.'
-  send_sms(twilio_sms_number, to, body)
+  send_sms(phone_id, body)
   
   local body = 'What would you like to do? text "1" or "start engine", text "2" or "flash lights"'
-  send_sms(twilio_sms_number, to, body)
+  send_sms(phone_id, body)
 end
 
 send_call_to_bluelink_to_start_engine = function(phone_id)
@@ -35,39 +34,35 @@ send_phonecall = function(to, callback_url, numbers_to_press_after_answer)
   twilio.call(ACCOUNTSID, AUTHTOKEN, from, to, callback_url, numbers_to_press_after_answer)
 end
 
-send_sms = function(from, to, body) 
-  twilio.sms(ACCOUNTSID, AUTHTOKEN, from, to, body)
+send_sms = function(phone_id, body) 
+  local to = get_phone_number(phone_id)
+  twilio.sms(ACCOUNTSID, AUTHTOKEN, twilio_sms_number, to, body)
 end
 
 send_unknown_action_message = function(phone_id, car_action) 
-  local to = get_phone_number(phone_id)
   local body = 'Sorry, "'..car_action..'" is not valid. try "start engine"'
-  send_sms(twilio_sms_number, to, body)
+  send_sms(phone_id, body)
 end
 
 send_bad_phone_number_message = function(phone_id, msg) 
-  local to = get_phone_number(phone_id)
   local body = 'Sorry, "'..msg..'" is not a valid phone number. Try again. The phone number must be 10 digits.'
-  send_sms(twilio_sms_number, to, body)
+  send_sms(phone_id, body)
 end
 
 send_pin_request = function(phone_id)
-  local to = get_phone_number(phone_id)
   local body = 'What\'s your bluelink PIN?'
-  send_sms(twilio_sms_number, to, body)
+  send_sms(phone_id, body)
   set_status(phone_id, SENT_PIN_REQUEST)
 end
 
 send_phone_number_request = function(phone_id)
-  local to = get_phone_number(phone_id)
   local body = 'What\'s your bluelink phone number? (or text "me" if you\'re calling from your bluelink-associated phone number)'
-  send_sms(twilio_sms_number, to, body)
+  send_sms(phone_id, body)
   set_status(phone_id, SENT_PHONE_CONFIRMATION_REQUEST)
 end
 
 send_car_options = function(phone_id)
-  local to = get_phone_number(phone_id)
   local body = 'send "start engine" to start the engine'
-  send_sms(twilio_sms_number, to, body)
+  send_sms(phone_id, body)
   set_status(phone_id, SENT_CAR_OPTIONS)
 end
