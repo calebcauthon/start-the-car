@@ -21,9 +21,8 @@ send_get_started_message = function(phone_id)
   send_sms(phone_id, body)
 end
 
-send_call_to_bluelink_to_start_engine = function(phone_id)
+send_call_to_bluelink_to_start_engine = function(phone_id, pin)
   local confirmed_phone_number = get_bluelink_phone_number(phone_id)
-	local pin = get_bluelink_pin(phone_id)
 	local callback_url = 'https://bluelink.webscript.io/start-engine-twilio-script'
 	local digits = 'ww1ww1wwwwwwwwwwwwwwwwwwwwwwww1ww'..confirmed_phone_number..'www'..pin..'wwwwwwwwwwwwww'
 	send_phonecall(BLUELINK_CALL_CENTER, callback_url, digits)
