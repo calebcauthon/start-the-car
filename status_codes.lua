@@ -7,7 +7,7 @@ SENT_CAR_OPTIONS = 'sent car options'
 
 set_status = function(phone_id, status)
   local status_id = phone_id..'_status' 
-  storage[status_id] = RECEIVED_INITIAL_TEXT
+  storage[status_id] = status
 end
 
 get_status = function(phone_id) 
