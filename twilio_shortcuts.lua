@@ -21,7 +21,7 @@ send_get_started_message = function(phone_id)
   send_sms(phone_id, body)
 end
 
-send_call_to_bluelink(phone_id, pin, car_action) 
+send_call_to_bluelink = function(phone_id, pin, car_action) 
   if(car_action == "start engine") then
     send_call_to_bluelink_to_start_engine(phone_id, pin)
   end
