@@ -15,6 +15,22 @@ get_status = function(phone_id)
   return storage[status_id]
 end
 
+set_car_action = function(phone_id, car_action)
+  local car_action_id = phone_id..'_caraction' 
+  storage[car_action_id] = car_action
+end
+
+get_car_action = function(phone_id)
+  local car_action_id = phone_id..'_caraction' 
+  return storage[car_action_id]
+end
+
+get_description_of = function(car_action) 
+  if(car_action == "start engine") then
+    return "start your engine"
+  end
+end
+
 set_bluelink_pin = function(phone_id, pin) 
   local bluelink_pin_id = phone_id..'_pin'
   storage[bluelink_pin_id] = pin
