@@ -4,6 +4,15 @@ local twilio_sms_number = '+14844986324'
 local twilio_voice_number = '+14844986324'
 local BLUELINK_CALL_CENTER = '8552258354'
 
+twilio.call = function (accountsid, authtoken, from, to, url, sendDigits)
+	return http.request {
+		method = 'POST',
+		url = string.format('https://api.twilio.com/2010-04-01/Accounts/%s/Calls.json', accountsid),
+		data={ From=from, To=to, Url=url, SendDigits=sendDigits},
+		auth={accountsid, authtoken}
+	}
+end
+
 send_call_to_bluelink_to_start_engine = function(phone_id)
   local confirmed_phone_number = get_bluelink_phone_number(phone_id)
 	local pin = get_bluelink_pin(phone_id)
