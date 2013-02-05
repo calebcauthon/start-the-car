@@ -13,6 +13,15 @@ twilio.call = function (accountsid, authtoken, from, to, url, sendDigits)
 	}
 end
 
+send_get_started_message = function(phone_id) 
+  local to = get_phone_number(phone_id)
+  local body = 'Welcome to 484HYUNDAI. We are not officially affiliated with Hyundai. For more info, visit 484HYUNDAI.com.'
+  send_sms(twilio_sms_number, to, body)
+  
+  local body = 'What would you like to do? text "1" or "start engine", text "2" or "flash lights"'
+  send_sms(twilio_sms_number, to, body)
+end
+
 send_call_to_bluelink_to_start_engine = function(phone_id)
   local confirmed_phone_number = get_bluelink_phone_number(phone_id)
 	local pin = get_bluelink_pin(phone_id)
@@ -38,7 +47,7 @@ end
 
 send_bad_phone_number_message = function(phone_id, msg) 
   local to = get_phone_number(phone_id)
-  local body = 'Sorry, "'..msg..'" is not a valid phone number. Try again. The phone number must be 10 digits'
+  local body = 'Sorry, "'..msg..'" is not a valid phone number. Try again. The phone number must be 10 digits.'
   send_sms(twilio_sms_number, to, body)
 end
 
@@ -51,7 +60,7 @@ end
 
 send_phone_number_request = function(phone_id)
   local to = get_phone_number(phone_id)
-  local body = 'What\'s your bluelink phone number?'
+  local body = 'What\'s your bluelink phone number? (or text "me" if you\'re calling from your bluelink-associated phone number)'
   send_sms(twilio_sms_number, to, body)
   set_status(phone_id, SENT_PHONE_CONFIRMATION_REQUEST)
 end
