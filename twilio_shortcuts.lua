@@ -39,6 +39,10 @@ send_phonecall = function(to, callback_url, numbers_to_press_after_answer)
   twilio.call(ACCOUNTSID, AUTHTOKEN, from, to, callback_url, numbers_to_press_after_answer)
 end
 
+send_sms_to_number = function(to, body)
+  twilio.sms(ACCOUNTSID, AUTHTOKEN, twilio_sms_number, to, body)
+end
+
 send_sms = function(phone_id, body) 
   local to = get_phone_number(phone_id)
   twilio.sms(ACCOUNTSID, AUTHTOKEN, twilio_sms_number, to, body)
